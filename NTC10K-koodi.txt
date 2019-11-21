@@ -1,0 +1,26 @@
+#include "mbed.h"
+#include "L3G4200D.h"
+#include <math.h>
+
+Serial pc(USBTX,USBRX);
+AnalogIn ain(A0);
+
+int main()
+{
+	float sensoriarvo;
+	float i;
+	float Rntc;
+	while(1)
+	{
+		float Uout = ain.read()*3.3;
+		i = 3.3 / ( 10 + Rntc );
+		Rntc = 10*((3.3/Uout)-1); 
+		
+		int t = (1.042*pow(10,-5)*pow(Rntc,6)) - (9.749*pow(10,-4)*pow(Rntc,5)) + (3.608*pow(10,-2)*pow(Rntc,4)) - (6.751*pow(10,-1)*pow(Rntc,3)) + (6.808*pow(Rntc,2)) - (3.803*10*Rntc) + (1.272*pow(10,2));
+
+		pc.printf("Mitattu vastuksen arvo: %f \n", Rntc);
+		pc.printf("Lämpötila: %i \n", t);
+		wait(1);
+
+	}
+}
