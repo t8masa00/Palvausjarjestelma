@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textBox_tempPontto = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button_tempUp = new System.Windows.Forms.Button();
             this.button_tempDown = new System.Windows.Forms.Button();
             this.textBox_tempLiha = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // textBox_tempPontto
@@ -97,7 +99,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 435);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox_tempLiha);
             this.Controls.Add(this.button_tempDown);
@@ -119,6 +121,7 @@
         private System.Windows.Forms.Button button_tempDown;
         private System.Windows.Forms.TextBox textBox_tempLiha;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
