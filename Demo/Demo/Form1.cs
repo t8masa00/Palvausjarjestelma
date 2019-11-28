@@ -45,13 +45,11 @@ namespace Demo
         {
             in_data = myport.ReadLine();
             string[] c = myport.ReadLine().Split(',');
-            Console.WriteLine(c[0]);
-            Console.WriteLine(c[1]);
-            Console.WriteLine(c[2]);
+            //Console.WriteLine(c[0]);
+            //Console.WriteLine(c[1]);
             sisalampo = c[0];
             if (!int.TryParse(c[0], out int liha));
-            if(!int.TryParse(c[1], out int lampo)) ;
-            if(!int.TryParse(c[2], out int lampo2)) ;
+            if(!float.TryParse(c[1], out float lampo)) ;
             
             this.Invoke(new EventHandler(displaydata_event));
 
