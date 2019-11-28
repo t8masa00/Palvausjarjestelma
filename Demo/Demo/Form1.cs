@@ -86,14 +86,11 @@ namespace Demo
 
         private void Start_Click(object sender, EventArgs e)
         {
+            label2.Text = "Kuivaus";
+            panel1.BackColor = Color.Green;
             timer1.Interval = aika_kuivaus * 60000;
             timer1.Start();
-        }
-
-        private void Timer1_Tick(object sender, EventArgs e)
-        {
-            timer1.Stop();
-            MessageBox.Show("timeri");
+            start.Enabled = false;
         }
 
         private void Button_tempUp2_Click(object sender, EventArgs e)
@@ -128,6 +125,28 @@ namespace Demo
         {
             Application.Exit();
         }
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            MessageBox.Show("timeri 1 tick");
+            timer2.Interval = aika_savuntuotto * 60000;
+            timer2.Start();
+            label2.Text = "Savuntuotto";
+        }
 
+        private void Timer2_Tick(object sender, EventArgs e)
+        {
+            MessageBox.Show("timeri 2 tick");
+            label2.Text = "Palvaus";
+        }
+
+        private void Pysayta_Click(object sender, EventArgs e)
+        {
+            panel1.BackColor = Color.Red;
+            label2.Text = "Pysäytetty";
+            timer1.Stop();
+            timer2.Stop();
+            start.Enabled = true;
+        }
     }
 }

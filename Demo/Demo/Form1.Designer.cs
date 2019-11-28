@@ -52,7 +52,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button1 = new System.Windows.Forms.Button();
+            this.Button1 = new System.Windows.Forms.Button();
+            this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.pysayta = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -112,6 +116,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.pysayta);
             this.groupBox1.Controls.Add(this.start);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.textBox_savuntuotto);
@@ -135,7 +140,7 @@
             // 
             // start
             // 
-            this.start.Location = new System.Drawing.Point(285, 492);
+            this.start.Location = new System.Drawing.Point(67, 492);
             this.start.Name = "start";
             this.start.Size = new System.Drawing.Size(191, 82);
             this.start.TabIndex = 12;
@@ -270,7 +275,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(608, 12);
+            this.panel1.Location = new System.Drawing.Point(764, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(219, 80);
             this.panel1.TabIndex = 12;
@@ -279,33 +284,68 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(25, 19);
+            this.label2.Location = new System.Drawing.Point(20, 19);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(164, 37);
+            this.label2.Size = new System.Drawing.Size(0, 37);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Käynnissä";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // timer2
+            // 
+            this.timer2.Tick += new System.EventHandler(this.Timer2_Tick);
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
-            // button1
+            // Button1
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(787, 702);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(153, 56);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Sulje";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.Button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button1.Location = new System.Drawing.Point(787, 702);
+            this.Button1.Name = "Button1";
+            this.Button1.Size = new System.Drawing.Size(153, 56);
+            this.Button1.TabIndex = 13;
+            this.Button1.Text = "Sulje";
+            this.Button1.UseVisualStyleBackColor = true;
+            this.Button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // pysayta
+            // 
+            this.pysayta.Location = new System.Drawing.Point(285, 492);
+            this.pysayta.Name = "pysayta";
+            this.pysayta.Size = new System.Drawing.Size(191, 82);
+            this.pysayta.TabIndex = 13;
+            this.pysayta.Text = "Pysäytä";
+            this.pysayta.UseVisualStyleBackColor = true;
+            this.pysayta.Click += new System.EventHandler(this.Pysayta_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(375, 41);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(147, 25);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Kokonaisaika:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(528, 41);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(0, 25);
+            this.label7.TabIndex = 15;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 782);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.Button1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -351,7 +391,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Button1;
+        private System.Windows.Forms.Timer timer3;
+        private System.Windows.Forms.Button pysayta;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }
 
