@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,11 +16,15 @@ namespace Demo
     {
         string in_data; // serial data nucleolta
         private SerialPort myport;
+        Stopwatch timer = new Stopwatch();
+        // Käyttöliittymään syötettävät lämpötilat
         int aika_kuivaus = 30;
         int aika_savuntuotto = 30;
-        int haluttu_sisalampo = 80;
-        string sisalampo;
-        
+        int haluttu_lihalampo = 70;
+        int haluttu_pontonlampo = 85;
+        string ponton_lampo;
+        string sisa_lampo;
+        string kokonaisaika;
         public Form1()
         {
             ReadData();
@@ -41,44 +46,60 @@ namespace Demo
             }
 
         }
-        private void Myport_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        public void Myport_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            in_data = myport.ReadLine();
-            string[] c = myport.ReadLine().Split(',');
-            //Console.WriteLine(c[0]);
-            //Console.WriteLine(c[1]);
-            sisalampo = c[0];
-            if (!int.TryParse(c[0], out int liha));
-            if(!float.TryParse(c[1], out float lampo)) ;
-            
             this.Invoke(new EventHandler(displaydata_event));
 
-            if (liha >= 28)
-            {
-                myport.WriteLine("1");
-            }
-            else
+            in_data = myport.ReadLine();
+            string[] c = myport.ReadLine().Split(',');
+
+            ponton_lampo = c[0];
+            sisa_lampo = c[1];
+
+            float lampo = float.Parse(c[0]);
+            int liha = int.Parse(c[1]);
+
+            if (timer1.Enabled == false && timer2.Enabled == false)
             {
                 myport.WriteLine("0");
             }
-            if (lampo == 55)
+            if (liha >= haluttu_lihalampo)
             {
-                Console.WriteLine("hehe");
+                myport.WriteLine("0");
             }
-            
-        }
+            if (lampo >= haluttu_pontonlampo && timer1.Enabled == true)
+            {
+                myport.WriteLine("0");
+            }
+            else
+            {
+                myport.WriteLine("1");
+            }
+            if (timer2.Enabled == true)
+            {
+                myport.WriteLine("2");
+            }
 
+            //Kokonaisajan asetuksia
+            TimeSpan ts = timer.Elapsed;
+            string elapsedTime = string.Format("{0:00}:{1:00}", ts.Hours, ts.Minutes);
+            kokonaisaika = elapsedTime;
+        }
         private void displaydata_event(object sender, EventArgs e)
         {
             string kaika = aika_kuivaus.ToString();
             string saika = aika_savuntuotto.ToString();
-            string slampo = haluttu_sisalampo.ToString();
+            string slampo = haluttu_lihalampo.ToString();
+            string plampo = haluttu_pontonlampo.ToString();
 
+            textBox_pontto.Text = plampo;
             textBox_kuivaus.Text = kaika;
             textBox_savuntuotto.Text = saika;
             textBox_liha.Text = slampo;
 
-            label_sisalampo.Text = sisalampo;
+            label_sisalampo.Text = sisa_lampo;
+            label_lampo.Text = ponton_lampo;
+            label8.Text = kokonaisaika;
             //throw new NotImplementedException();
         }
 
@@ -87,8 +108,19 @@ namespace Demo
             label2.Text = "Kuivaus";
             panel1.BackColor = Color.Green;
             timer1.Interval = aika_kuivaus * 60000;
+            timer.Start();
             timer1.Start();
             start.Enabled = false;
+
+        }
+        private void Pysayta_Click(object sender, EventArgs e)
+        {
+            panel1.BackColor = Color.Red;
+            label2.Text = "Pysäytetty";
+            timer.Stop();
+            timer1.Stop();
+            timer2.Stop();
+            start.Enabled = true;
         }
 
         private void Button_tempUp2_Click(object sender, EventArgs e)
@@ -112,15 +144,25 @@ namespace Demo
         }
         private void Button_tempUp_Click(object sender, EventArgs e)
         {
-            haluttu_sisalampo = haluttu_sisalampo + 1;
+            haluttu_lihalampo = haluttu_lihalampo + 1;
         }
 
         private void Button_tempDown_Click(object sender, EventArgs e)
         {
-            haluttu_sisalampo = haluttu_sisalampo - 1;
+            haluttu_lihalampo = haluttu_lihalampo - 1;
+        }
+        private void Button_tempUp4_Click(object sender, EventArgs e)
+        {
+            haluttu_pontonlampo = haluttu_pontonlampo + 1;
+        }
+
+        private void Button_tempDown4_Click(object sender, EventArgs e)
+        {
+            haluttu_pontonlampo = haluttu_pontonlampo - 1;
         }
         private void Button1_Click(object sender, EventArgs e)
         {
+            myport.WriteLine("0");
             Application.Exit();
         }
         private void Timer1_Tick(object sender, EventArgs e)
@@ -136,15 +178,6 @@ namespace Demo
         {
             MessageBox.Show("timeri 2 tick");
             label2.Text = "Palvaus";
-        }
-
-        private void Pysayta_Click(object sender, EventArgs e)
-        {
-            panel1.BackColor = Color.Red;
-            label2.Text = "Pysäytetty";
-            timer1.Stop();
-            timer2.Stop();
-            start.Enabled = true;
         }
     }
 }

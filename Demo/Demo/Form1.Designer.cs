@@ -35,6 +35,11 @@
             this.button_tempDown = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBox_pontto = new System.Windows.Forms.TextBox();
+            this.button_tempUp4 = new System.Windows.Forms.Button();
+            this.button_tempDown4 = new System.Windows.Forms.Button();
+            this.pysayta = new System.Windows.Forms.Button();
             this.start = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox_savuntuotto = new System.Windows.Forms.TextBox();
@@ -54,9 +59,9 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.Button1 = new System.Windows.Forms.Button();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.pysayta = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -66,7 +71,7 @@
             // textBox_liha
             // 
             this.textBox_liha.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_liha.Location = new System.Drawing.Point(285, 89);
+            this.textBox_liha.Location = new System.Drawing.Point(289, 174);
             this.textBox_liha.Name = "textBox_liha";
             this.textBox_liha.Size = new System.Drawing.Size(138, 80);
             this.textBox_liha.TabIndex = 0;
@@ -75,7 +80,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(21, 115);
+            this.label1.Location = new System.Drawing.Point(25, 200);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(260, 25);
             this.label1.TabIndex = 1;
@@ -84,7 +89,7 @@
             // button_tempUp
             // 
             this.button_tempUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_tempUp.Location = new System.Drawing.Point(453, 89);
+            this.button_tempUp.Location = new System.Drawing.Point(457, 174);
             this.button_tempUp.Name = "button_tempUp";
             this.button_tempUp.Size = new System.Drawing.Size(40, 39);
             this.button_tempUp.TabIndex = 2;
@@ -95,7 +100,7 @@
             // button_tempDown
             // 
             this.button_tempDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_tempDown.Location = new System.Drawing.Point(453, 132);
+            this.button_tempDown.Location = new System.Drawing.Point(457, 217);
             this.button_tempDown.Name = "button_tempDown";
             this.button_tempDown.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.button_tempDown.Size = new System.Drawing.Size(40, 37);
@@ -116,6 +121,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.textBox_pontto);
+            this.groupBox1.Controls.Add(this.button_tempUp4);
+            this.groupBox1.Controls.Add(this.button_tempDown4);
             this.groupBox1.Controls.Add(this.pysayta);
             this.groupBox1.Controls.Add(this.start);
             this.groupBox1.Controls.Add(this.label5);
@@ -133,14 +142,65 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(60, 95);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(521, 605);
+            this.groupBox1.Size = new System.Drawing.Size(521, 663);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ohjelman asetukset:";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(25, 73);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(209, 25);
+            this.label9.TabIndex = 15;
+            this.label9.Text = "Aseta pöntön lämpö:";
+            // 
+            // textBox_pontto
+            // 
+            this.textBox_pontto.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_pontto.Location = new System.Drawing.Point(289, 47);
+            this.textBox_pontto.Name = "textBox_pontto";
+            this.textBox_pontto.Size = new System.Drawing.Size(138, 80);
+            this.textBox_pontto.TabIndex = 14;
+            // 
+            // button_tempUp4
+            // 
+            this.button_tempUp4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_tempUp4.Location = new System.Drawing.Point(457, 47);
+            this.button_tempUp4.Name = "button_tempUp4";
+            this.button_tempUp4.Size = new System.Drawing.Size(40, 39);
+            this.button_tempUp4.TabIndex = 16;
+            this.button_tempUp4.Text = "+";
+            this.button_tempUp4.UseVisualStyleBackColor = true;
+            this.button_tempUp4.Click += new System.EventHandler(this.Button_tempUp4_Click);
+            // 
+            // button_tempDown4
+            // 
+            this.button_tempDown4.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_tempDown4.Location = new System.Drawing.Point(457, 90);
+            this.button_tempDown4.Name = "button_tempDown4";
+            this.button_tempDown4.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button_tempDown4.Size = new System.Drawing.Size(40, 37);
+            this.button_tempDown4.TabIndex = 17;
+            this.button_tempDown4.Text = "-";
+            this.button_tempDown4.UseVisualStyleBackColor = true;
+            this.button_tempDown4.Click += new System.EventHandler(this.Button_tempDown4_Click);
+            // 
+            // pysayta
+            // 
+            this.pysayta.Location = new System.Drawing.Point(285, 553);
+            this.pysayta.Name = "pysayta";
+            this.pysayta.Size = new System.Drawing.Size(191, 82);
+            this.pysayta.TabIndex = 13;
+            this.pysayta.Text = "Pysäytä";
+            this.pysayta.UseVisualStyleBackColor = true;
+            this.pysayta.Click += new System.EventHandler(this.Pysayta_Click);
+            // 
             // start
             // 
-            this.start.Location = new System.Drawing.Point(67, 492);
+            this.start.Location = new System.Drawing.Point(46, 553);
             this.start.Name = "start";
             this.start.Size = new System.Drawing.Size(191, 82);
             this.start.TabIndex = 12;
@@ -152,7 +212,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(21, 380);
+            this.label5.Location = new System.Drawing.Point(25, 465);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(237, 25);
             this.label5.TabIndex = 9;
@@ -161,7 +221,7 @@
             // textBox_savuntuotto
             // 
             this.textBox_savuntuotto.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_savuntuotto.Location = new System.Drawing.Point(285, 354);
+            this.textBox_savuntuotto.Location = new System.Drawing.Point(289, 439);
             this.textBox_savuntuotto.Name = "textBox_savuntuotto";
             this.textBox_savuntuotto.Size = new System.Drawing.Size(138, 80);
             this.textBox_savuntuotto.TabIndex = 8;
@@ -169,7 +229,7 @@
             // button_tempUp3
             // 
             this.button_tempUp3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_tempUp3.Location = new System.Drawing.Point(453, 354);
+            this.button_tempUp3.Location = new System.Drawing.Point(457, 439);
             this.button_tempUp3.Name = "button_tempUp3";
             this.button_tempUp3.Size = new System.Drawing.Size(40, 39);
             this.button_tempUp3.TabIndex = 10;
@@ -180,7 +240,7 @@
             // button_tempDown3
             // 
             this.button_tempDown3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_tempDown3.Location = new System.Drawing.Point(453, 397);
+            this.button_tempDown3.Location = new System.Drawing.Point(457, 482);
             this.button_tempDown3.Name = "button_tempDown3";
             this.button_tempDown3.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.button_tempDown3.Size = new System.Drawing.Size(40, 37);
@@ -193,7 +253,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(21, 247);
+            this.label4.Location = new System.Drawing.Point(25, 332);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(199, 25);
             this.label4.TabIndex = 5;
@@ -202,7 +262,7 @@
             // textBox_kuivaus
             // 
             this.textBox_kuivaus.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_kuivaus.Location = new System.Drawing.Point(285, 221);
+            this.textBox_kuivaus.Location = new System.Drawing.Point(289, 306);
             this.textBox_kuivaus.Name = "textBox_kuivaus";
             this.textBox_kuivaus.Size = new System.Drawing.Size(138, 80);
             this.textBox_kuivaus.TabIndex = 4;
@@ -210,7 +270,7 @@
             // button_tempUp2
             // 
             this.button_tempUp2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_tempUp2.Location = new System.Drawing.Point(453, 221);
+            this.button_tempUp2.Location = new System.Drawing.Point(457, 306);
             this.button_tempUp2.Name = "button_tempUp2";
             this.button_tempUp2.Size = new System.Drawing.Size(40, 39);
             this.button_tempUp2.TabIndex = 6;
@@ -221,7 +281,7 @@
             // button_tempDown2
             // 
             this.button_tempDown2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_tempDown2.Location = new System.Drawing.Point(453, 264);
+            this.button_tempDown2.Location = new System.Drawing.Point(457, 349);
             this.button_tempDown2.Name = "button_tempDown2";
             this.button_tempDown2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.button_tempDown2.Size = new System.Drawing.Size(40, 37);
@@ -234,7 +294,7 @@
             // 
             this.groupBox2.Controls.Add(this.label_sisalampo);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(608, 123);
+            this.groupBox2.Location = new System.Drawing.Point(608, 335);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(332, 157);
             this.groupBox2.TabIndex = 10;
@@ -255,12 +315,12 @@
             // 
             this.groupBox3.Controls.Add(this.label_lampo);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(608, 316);
+            this.groupBox3.Location = new System.Drawing.Point(608, 142);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(332, 157);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Laatikon lämpö:";
+            this.groupBox3.Text = "Pöntön lämpö:";
             // 
             // label_lampo
             // 
@@ -309,16 +369,6 @@
             this.Button1.UseVisualStyleBackColor = true;
             this.Button1.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // pysayta
-            // 
-            this.pysayta.Location = new System.Drawing.Point(285, 492);
-            this.pysayta.Name = "pysayta";
-            this.pysayta.Size = new System.Drawing.Size(191, 82);
-            this.pysayta.TabIndex = 13;
-            this.pysayta.Text = "Pysäytä";
-            this.pysayta.UseVisualStyleBackColor = true;
-            this.pysayta.Click += new System.EventHandler(this.Pysayta_Click);
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -338,11 +388,21 @@
             this.label7.Size = new System.Drawing.Size(0, 25);
             this.label7.TabIndex = 15;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(528, 41);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(0, 24);
+            this.label8.TabIndex = 16;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 782);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.Button1);
@@ -396,6 +456,11 @@
         private System.Windows.Forms.Button pysayta;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBox_pontto;
+        private System.Windows.Forms.Button button_tempUp4;
+        private System.Windows.Forms.Button button_tempDown4;
     }
 }
 
