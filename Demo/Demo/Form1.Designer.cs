@@ -62,10 +62,15 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.timer4 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox_liha
@@ -294,7 +299,7 @@
             // 
             this.groupBox2.Controls.Add(this.label_sisalampo);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(608, 335);
+            this.groupBox2.Location = new System.Drawing.Point(632, 462);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(332, 157);
             this.groupBox2.TabIndex = 10;
@@ -315,7 +320,7 @@
             // 
             this.groupBox3.Controls.Add(this.label_lampo);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(608, 142);
+            this.groupBox3.Location = new System.Drawing.Point(632, 269);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(332, 157);
             this.groupBox3.TabIndex = 11;
@@ -369,6 +374,10 @@
             this.Button1.UseVisualStyleBackColor = true;
             this.Button1.Click += new System.EventHandler(this.Button1_Click);
             // 
+            // timer3
+            // 
+            this.timer3.Tick += new System.EventHandler(this.Timer3_Tick);
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -397,11 +406,44 @@
             this.label8.Size = new System.Drawing.Size(0, 24);
             this.label8.TabIndex = 16;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(735, 162);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(106, 31);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "Vastus:";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Location = new System.Drawing.Point(847, 153);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(136, 60);
+            this.panel2.TabIndex = 18;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(13, 15);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(0, 24);
+            this.label11.TabIndex = 0;
+            // 
+            // timer4
+            // 
+            this.timer4.Tick += new System.EventHandler(this.Timer4_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 782);
+            this.ClientSize = new System.Drawing.Size(1604, 881);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -421,6 +463,8 @@
             this.groupBox3.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -461,6 +505,10 @@
         private System.Windows.Forms.TextBox textBox_pontto;
         private System.Windows.Forms.Button button_tempUp4;
         private System.Windows.Forms.Button button_tempDown4;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Timer timer4;
     }
 }
 
