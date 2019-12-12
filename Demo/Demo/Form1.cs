@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO.Ports;
+using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace Demo
 {
@@ -22,22 +17,23 @@ namespace Demo
         int aika_savuntuotto = 30;
         int haluttu_lihalampo = 70;
         int haluttu_pontonlampo = 85;
-        int lukitus = 1;
+        int lukitus = 0;
+        int stop;
 
         string ponton_lampo;
         string sisa_lampo;
         string kokonaisaika;
 
         //PI-säätimen muuttujat
-        float kp = 3.9411f;
-        float ki = 0.009185f;
+        float kp = 2.1533f;
+        float ki = 0.0098f;
         float erosuure;
         float erosumma;
         float saatimen_kp_osa;
         float saatimen_ki_osa;
         float saatimen_ohj_viesti;
-        int timer_erotus;
-        
+        int testilo;
+
         public Form1()
         {
             ReadData();
@@ -50,7 +46,7 @@ namespace Demo
         {
             myport = new SerialPort("COM9", 9600, Parity.None, 8, StopBits.One);
             myport.DataReceived += Myport_DataReceived;
-            
+
             try
             {
                 myport.Open();
@@ -72,8 +68,9 @@ namespace Demo
 
             float lampo = float.Parse(c[0]);
             int liha = int.Parse(c[1]);
-
+           
             panel2.BackColor = default;
+
 
             //PI-säätimen asetukset
             erosuure = haluttu_pontonlampo - lampo;
@@ -86,109 +83,34 @@ namespace Demo
             {
                 saatimen_ohj_viesti = 100;
             }
-            if(saatimen_ohj_viesti <= 0)
+            if (saatimen_ohj_viesti <= 0)
             {
                 saatimen_ohj_viesti = 0;
             }
 
-            Console.WriteLine("lukitus:" + lukitus);
-            if (lukitus == 0 && timer3.Enabled == false && timer4.Enabled == false)
-            {
-                timer3.Interval = (int)saatimen_ohj_viesti * 100;
-                timer_erotus = 10000 - timer3.Interval;
-                timer3.Start();
-                Console.WriteLine("timer3:START");
-                lukitus = 1;
-            }
+            testilo = (int)saatimen_ohj_viesti;
 
-            if (timer3.Enabled == true)
+            if(lukitus == 1 && stop == 0)
             {
-                myport.WriteLine("1");
-                Console.WriteLine("timer3:PÄÄLLÄ");
                 panel2.BackColor = Color.Green;
-            }
-            else if(timer4.Enabled == true)
-            {
-                myport.WriteLine("0");
-                Console.WriteLine("OFF");
-            }
-            else
-            {
-                myport.WriteLine("0");
-            }
-
-            
-            Console.WriteLine("ohj:" + saatimen_ohj_viesti);
-            Console.WriteLine("t3:" + timer3.Interval);
-            Console.WriteLine("t4:" + timer4.Interval);
-            /*
-            if (timer.IsRunning == false)
-            {
-                myport.WriteLine("0");
-            }
-            else if (liha >= haluttu_lihalampo)
-            {
-                myport.WriteLine("0");
-            }
-            else if (lampo >= haluttu_pontonlampo && timer.IsRunning == true)
-            {
-                myport.WriteLine("0");
-            }
-            else
-            {
+                Console.WriteLine("rele=1");
                 myport.WriteLine("1");
-                panel2.BackColor = Color.Green;
             }
-            /*
-            if (timer1.Enabled == false && timer2.Enabled == false)
+            if(lukitus == 0)
             {
+                panel2.BackColor = default;
+                Console.WriteLine("rele=0");
                 myport.WriteLine("0");
             }
-            if (liha >= haluttu_lihalampo)
-            {
-                myport.WriteLine("0");
-            }
-            if (lampo >= haluttu_pontonlampo)
-            {
-                myport.WriteLine("0");
-            }
-            else
-            {
-                myport.WriteLine("1");
-                panel2.BackColor = Color.Green;
-                //Console.WriteLine("else");
-            }
 
-            if (timer.IsRunning == true)
-            {
+            Console.WriteLine("ohj:" + testilo);
+            Console.WriteLine("T:" + lampo);
 
-                int vahennys = 20;
-                if (arvo == 1 || arvo == 0 && lampo >= haluttu_pontonlampo - vahennys && lampo <= haluttu_pontonlampo)
-                {
-                    arvo = 1;
-                    myport.WriteLine("0");
-                    Console.WriteLine("if");
-                }
-
-                else if (arvo == 2 && lampo > haluttu_pontonlampo || arvo == 1 && lampo >= haluttu_pontonlampo)
-                {
-                    myport.WriteLine("0");
-                    arvo = 2;
-                    Console.WriteLine("else if");
-                }
-
-                Console.WriteLine(lampo);
-            }*/
-
-            Console.WriteLine(lampo);
-            if (timer2.Enabled == true)
-            {
-                myport.WriteLine("2");
-            }
             //Kokonaisajan asetuksia
             TimeSpan ts = timer.Elapsed;
-            string elapsedTime = string.Format("{0:00}:{1:00}", ts.Hours, ts.Minutes);
+            string elapsedTime = string.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds);
             kokonaisaika = elapsedTime;
+            Console.WriteLine(elapsedTime);
         }
         private void displaydata_event(object sender, EventArgs e)
         {
@@ -216,22 +138,22 @@ namespace Demo
             timer1.Interval = aika_kuivaus * 60000;
             timer.Start();
             timer1.Start();
-            lukitus = 0;
+            backgroundWorker1.DoWork += BackgroundWorker1_DoWork;
+            backgroundWorker1.RunWorkerAsync();
             start.Enabled = false;
             pysayta.Enabled = true;
+            stop = 0;
         }
         private void Pysayta_Click(object sender, EventArgs e)
         {
-            panel1.BackColor = Color.Red;
-            label2.Text = "Pysäytetty";
             timer.Stop();
             timer1.Stop();
             timer2.Stop();
-            timer3.Stop();
-            timer4.Stop();
-            Console.WriteLine("timer3:OFF");
+            panel1.BackColor = Color.Red;
+            label2.Text = "Pysäytetty";
             start.Enabled = true;
             pysayta.Enabled = false;
+            stop = 1;
         }
 
         private void Button_tempUp2_Click(object sender, EventArgs e)
@@ -288,18 +210,34 @@ namespace Demo
         {
             label2.Text = "Palvaus";
         }
-
-        private void Timer3_Tick(object sender, EventArgs e)
+        private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            timer3.Stop();
-            timer4.Interval = timer_erotus;
-            timer4.Start();
+            while (true)
+            {
+
+                int milliseconds;
+
+                lukitus = 1;
+                Console.WriteLine("testilo_backroundissa:" + testilo);
+                
+                System.Threading.Thread.Sleep(testilo * 100);
+
+                milliseconds = 10000 - (testilo * 100);
+                Console.WriteLine("milliseconds_backroundissa:" + milliseconds);
+                lukitus = 0;
+                
+                System.Threading.Thread.Sleep(milliseconds);
+            }
+            
+        }
+        private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
         }
 
-        private void Timer4_Tick(object sender, EventArgs e)
+        private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            timer4.Stop();
-            lukitus = 0;
+
         }
     }
 }
